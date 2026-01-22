@@ -11,6 +11,8 @@ import { UserDevice } from './user-device.entity';
 export enum UserRole {
   USER = 'user',
   ADMIN = 'admin',
+  STAFF = 'staff',
+  MANAGER = 'manager',
 }
 
 @Entity({ name: 'users' })
