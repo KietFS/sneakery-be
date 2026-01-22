@@ -25,8 +25,13 @@ export class CurrentUserMiddleware implements NestMiddleware {
     if (!token) {
       return next();
     }
-    const parsedToken = this.jwtService.decode(token);
-    req.currentUser = parsedToken;
+
+    try {
+      const parsedToken = await this.jwtService.verifyAsync(token);
+      req.currentUser = parsedToken;
+    } catch (error) {
+      return next();
+    }
 
     next();
   }
